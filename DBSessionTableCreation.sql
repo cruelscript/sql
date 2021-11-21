@@ -1,0 +1,64 @@
+USE SessionDB; 
+
+CREATE TABLE Directions(
+   NumDir VARCHAR(128) PRIMARY KEY,
+   Title VARCHAR(128),
+   Quantity INT CHECK(Quantity > 0)
+)
+GO
+
+CREATE TABLE Groups(
+   NumGr VARCHAR(128) PRIMARY KEY,
+   NumDir VARCHAR(128),
+   NumSt INT,
+   Quantity INT CHECK(Quantity > 0),
+   FOREIGN KEY (NumDir)  REFERENCES Directions (NumDir)
+      ON DELETE CASCADE
+      ON UPDATE CASCADE
+)
+GO
+
+CREATE TABLE Students(
+   NumSt INT IDENTITY (1,1) PRIMARY KEY,
+   FIO VARCHAR(128),
+   NumGr VARCHAR(128),
+   FOREIGN KEY (NumGr)  REFERENCES Groups (NumGr)
+       ON DELETE CASCADE
+       ON UPDATE CASCADE
+)
+GO
+
+CREATE TABLE Disciplines(
+    NumDisc INT IDENTITY (1,1) PRIMARY KEY,
+    DisciplinesName VARCHAR(128)
+)
+GO
+
+CREATE TABLE Uplans(
+    IdDisc INT IDENTITY (1,1) PRIMARY KEY,
+    NumDir VARCHAR(128),
+    NumDisc INT,
+	Semestr INT,
+	FOREIGN KEY (NumDir)  REFERENCES Directions (NumDir)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE,
+	FOREIGN KEY (NumDisc)  REFERENCES Disciplines (NumDisc)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
+)
+GO
+
+CREATE TABLE Balls(
+	IdBall INT IDENTITY (1,1) PRIMARY KEY,
+    IdDisc INT,
+    NumSt INT,
+	Ball INT,
+	DateEx DATE,
+	FOREIGN KEY (IdDisc)  REFERENCES Uplans (IdDisc)
+        ON DELETE NO ACTION
+        ON UPDATE NO ACTION,
+	FOREIGN KEY (NumSt)  REFERENCES Students (NumSt)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
+)
+GO
