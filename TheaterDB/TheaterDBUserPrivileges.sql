@@ -10,13 +10,13 @@ grant usage, select on all sequences in schema public to JaneDoe;
 create or replace view full_staging as
     select Actor.name as Actor, Role.name as Role, playDate, directorName, appointmentDate, removalDate
         from Staging join Actor on Staging.actorId = Actor.idActor
-            join Role on Staging.roleId = Role.idRole
+            join Role on Staging.roleId = Role.idRole;
 
 create or replace view full_role as
     select Role.name as Role, Amplua.name as Amplua, Play.name as PLay, sexname as Sex from Role
         join Amplua on Role.ampluaId = Amplua.idAmplua
         join Play on Role.playId = Play.idPlay
-        join Sex on Role.sexId = Sex.idsex
+        join Sex on Role.sexId = Sex.idsex;
 
 create or replace view full_play as
     select * from Play;

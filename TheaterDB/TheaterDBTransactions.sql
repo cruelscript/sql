@@ -16,7 +16,7 @@ begin;
 set transaction isolation level read uncommitted;
 select current_setting('transaction_isolation');
 update Tr set A = 'testA1' where A is null;
-select * from Tr;
+select * from Tr; --
 end;
 
 --trB
