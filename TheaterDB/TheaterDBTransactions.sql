@@ -13,18 +13,18 @@ insert into Tr values
 
 --trA
 begin;
-set transaction isolation level read uncommitted;
-select current_setting('transaction_isolation');
-update Tr set A = 'testA1' where A is null;
-select * from Tr; --
+    set transaction isolation level read uncommitted;
+    select current_setting('transaction_isolation');
+    update Tr set A = 'testA1' where A is null;
+    select * from Tr; --
 end;
 
 --trB
 begin;
-set transaction isolation level read uncommitted;
-select current_setting('transaction_isolation');
-update Tr set B = 'never' where A is null;
-select * from Tr;
+    set transaction isolation level read uncommitted;
+    select current_setting('transaction_isolation');
+    update Tr set B = 'never' where A is null;
+    select * from Tr;
 end;
 
 -- грязное чтение --

@@ -28,7 +28,6 @@ grant update (appointmentDate) on full_staging to on_update;
 grant update (name) on full_play to on_update;
 grant on_update to JaneDoe;
 
-
 -- Test privileges for JaneDoe
 
 select * from Actor; -- OK

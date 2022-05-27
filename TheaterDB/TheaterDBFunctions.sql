@@ -67,5 +67,3 @@ $$ language plpgsql;
 drop function showPerformancesAfter(neededDate date);
 
 select showPerformancesAfter('2022-03-10');
-
-create extension plpython3u;
